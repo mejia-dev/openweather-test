@@ -37,21 +37,13 @@ function printError(request, city) {
   document.querySelector('#showResponse').innerText = `There was an error accessing the weather data for ${city}:  ${request.status} ${request.statusText}`;
 }
 
-function handleCityFormSubmission(event) {
+function handleFormSubmission(event) {
   event.preventDefault();
-  const city = document.querySelector('#location').value;
+  const location = document.querySelector('#location').value;
   document.querySelector('#location').value = null;
-  getWeather(city);
-}
-
-function handleZIPFormSubmission(event) {
-  event.preventDefault();
-  const zip = document.querySelector('#zip').value;
-  document.querySelector('#zip').value = null;
-  getWeather(zip);
+  getWeather(location);
 }
 
 window.addEventListener("load", function() {
-  document.getElementById('cityForm').addEventListener("submit", handleCityFormSubmission);
-  document.getElementById('ZIPForm').addEventListener("submit", handleZIPFormSubmission);
+  document.getElementById('cityForm').addEventListener("submit", handleFormSubmission);
 });
