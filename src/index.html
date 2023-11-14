@@ -14,8 +14,18 @@
     <form id="tempHumidForm">
       <label for="location">Enter a location:</label>
       <input id="location" type="text" name="location">
+      <br>
+      <label>
+        <input type="radio" name="outputOption" value="weather" checked>
+        Weather
+      </label>
+      <label>
+        <input type="radio" name="outputOption" value="forecast">
+        Forecast
+      </label>
       <br><br>
-      <button type="submit" class="btn-success" id="tempHumidButton">Get Current Temperature and Humidity</button>
+
+      <button type="submit" class="btn-success" id="formSubmit">Get Current Temperature and Humidity</button>
       <button type="submit" class="btn-success" id="fiveDayButton">Get Five-Day Forecast</button>
     </form>
     <br>
