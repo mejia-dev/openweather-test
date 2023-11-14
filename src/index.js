@@ -8,9 +8,9 @@ function getWeather(input) {
   let request = new XMLHttpRequest();
   let url;
   if (input.match(/[0-9]{5}/g)) {
-    url = `http://api.openweathermap.org/data/2.5/weather?zip=${input}&appid=${process.env.API_KEY}`;
+    url = `http://api.openweathermap.org/data/2.5/weather?zip=${input}&appid=${process.env.API_KEY}&units=imperial`;
   } else {
-    url = `http://api.openweathermap.org/data/2.5/weather?q=${input}&appid=${process.env.API_KEY}`;
+    url = `http://api.openweathermap.org/data/2.5/weather?q=${input}&appid=${process.env.API_KEY}&units=imperial`;
   }
 
   request.addEventListener("loadend", function() {
@@ -30,7 +30,7 @@ function getWeather(input) {
 
 function printElements(apiResponse, city) {
   document.querySelector('#showResponse').innerText = `The humidity in ${city} is ${apiResponse.main.humidity}%.
-  The temperature in Fahrenheit is ${Math.trunc(apiResponse.main.temp * 9/5 - 459.67)} degrees.`;
+  The temperature in Fahrenheit is ${apiResponse.main.temp} degrees.`;
 }
 
 function printError(request, city) {
