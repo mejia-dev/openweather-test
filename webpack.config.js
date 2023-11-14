@@ -21,7 +21,7 @@ module.exports = {
       verbose: true
     }),
     new HtmlWebpackPlugin({
-      title: 'Shape Tracker',
+      title: 'OpenWeather API Test Project',
       template: './src/index.html',
       inject: 'body'
     })
