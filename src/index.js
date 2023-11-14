@@ -37,13 +37,21 @@ function printError(request, city) {
   document.querySelector('#showResponse').innerText = `There was an error accessing the weather data for ${city}:  ${request.status} ${request.statusText}`;
 }
 
-function handleFormSubmission(event) {
+function handleTempFormSubmission(event) {
   event.preventDefault();
   const location = document.querySelector('#location').value;
   document.querySelector('#location').value = null;
   getWeather(location);
 }
 
+function handleForecastFormSubmission(event) {
+  event.preventDefault();
+  const location = document.querySelector('#location').value;
+  document.querySelector('#location').value = null;
+  getForecast(location);
+}
+
 window.addEventListener("load", function() {
-  document.getElementById('cityForm').addEventListener("submit", handleFormSubmission);
+  document.getElementById('tempHumidButton').addEventListener("click", handleTempFormSubmission);
+  document.getElementById('fiveDayButton').addEventListener("click", handleForecastFormSubmission);
 });
