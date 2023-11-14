@@ -25,7 +25,7 @@ function getWeather(city) {
 
 function printElements(apiResponse, city) {
   document.querySelector('#showResponse').innerText = `The humidity in ${city} is ${apiResponse.main.humidity}%.
-  The temperature in Kelvins is ${apiResponse.main.temp} degrees.`;
+  The temperature in Fahrenheit is ${Math.trunc(apiResponse.main.temp * 9/5 - 459.67)} degrees.`;
 }
 
 function printError(request, city) {
