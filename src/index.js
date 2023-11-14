@@ -4,16 +4,21 @@ import './css/styles.css';
 
 // Business Logic
 
-function getWeather(city) {
+function getWeather(input) {
   let request = new XMLHttpRequest();
-  const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.API_KEY}`;
-  
+  let url;
+  if (input.match(/[0-9]{5}/g)) {
+    url = `http://api.openweathermap.org/data/2.5/weather?zip=${input}&appid=${process.env.API_KEY}`;
+  } else {
+    url = `http://api.openweathermap.org/data/2.5/weather?q=${input}&appid=${process.env.API_KEY}`;
+  }
+
   request.addEventListener("loadend", function() {
     const response = JSON.parse(this.responseText);
     if (this.status === 200) {
-      printElements(response, city);
+      printElements(response, input);
     } else {
-      printError(this, city);
+      printError(this, input);
     }
   });
 
@@ -32,13 +37,21 @@ function printError(request, city) {
   document.querySelector('#showResponse').innerText = `There was an error accessing the weather data for ${city}:  ${request.status} ${request.statusText}`;
 }
 
-function handleFormSubmission(event) {
+function handleCityFormSubmission(event) {
   event.preventDefault();
   const city = document.querySelector('#location').value;
   document.querySelector('#location').value = null;
   getWeather(city);
 }
 
+function handleZIPFormSubmission(event) {
+  event.preventDefault();
+  const zip = document.querySelector('#zip').value;
+  document.querySelector('#zip').value = null;
+  getWeather(zip);
+}
+
 window.addEventListener("load", function() {
-  document.querySelector('form').addEventListener("submit", handleFormSubmission);
+  document.getElementById('cityForm').addEventListener("submit", handleCityFormSubmission);
+  document.getElementById('ZIPForm').addEventListener("submit", handleZIPFormSubmission);
 });
